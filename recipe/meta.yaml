@@ -13,7 +13,7 @@ source:
   sha256: db6c9eca919b86f3eb6102dd0e1215af72e39ed3a4e8d142e6a21d3f20d5c244
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win]
 
 outputs:
@@ -21,7 +21,7 @@ outputs:
   - name: pytorch_scatter_proc
     version: 1.0.0
     build:
-      number: 0
+      number: 1
       string: "{{ pytorch_scatter_proc_type }}"
     test:
       commands:
@@ -30,7 +30,7 @@ outputs:
   - name: pytorch_scatter
     version: {{ version }}
     build:
-      number: 0
+      number: 1
       script: python -m pip install . -vv
     requirements:
       build:
