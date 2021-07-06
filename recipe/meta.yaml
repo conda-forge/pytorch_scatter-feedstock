@@ -14,7 +14,7 @@ build:
   skip: true  # [win]
   script:
     - export FORCE_CUDA="1"    # [linux64 and cuda_compiler_version not in (undefined, 'None')]
-    - export CC="$GCC"   # [linux64 and cuda_compiler_version not in (undefined, 'None')]
+    - export CC="$GCC"         # [linux64 and cuda_compiler_version not in (undefined, 'None')]
     - {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -25,17 +25,16 @@ requirements:
   host:
     - python
     - pip
+    # pytorch 1.8 is the latest supported version of conda-forge at build time
+    - pytorch 1.8
     - pytorch-gpu  # [cuda_compiler_version not in (undefined, 'None')]
     - pytorch-cpu  # [osx or cuda_compiler_version in (undefined, 'None')]
-    - setuptools
     - pytest-runner
   run:
     - python
-    - pytorch
-    - {{ pin_compatible('pytorch-gpu') }}  # [cuda_compiler_version not in (undefined, 'None')]
-    - {{ pin_compatible('pytorch-cpu') }}  # [osx or cuda_compiler_version in (undefined, 'None')]
-    - pytest
-    - pytest-cov
+    - {{ pin_compatible('pytorch', max_pin='x.x.x') }}
+    - pytorch-gpu  # [cuda_compiler_version not in (undefined, 'None')]
+    - pytorch-cpu  # [osx or cuda_compiler_version in (undefined, 'None')]
 test:
   imports:
     - torch_scatter
