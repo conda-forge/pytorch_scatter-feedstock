@@ -1,5 +1,5 @@
 {% set name = "torch_scatter" %}
-{% set version = "2.0.7" %}
+{% set version = "2.0.9" %}
 
 package:
   name: py{{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 369184948c838f756eea10464a3fbf8e103e22dc94d7045dbab85b5748bf85f9
+  sha256: 08f5511d64473badf0a71d156b36dc2b09b9c2f00a7cd373b935b490c477a7f1
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win]
   script:
     - export FORCE_CUDA="1"    # [linux64 and cuda_compiler_version not in (undefined, 'None')]
