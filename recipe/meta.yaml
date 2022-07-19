@@ -26,7 +26,7 @@ build:
     # But I've already patched 10.0 for compatibility with the CUDA
     # versions we support
     # Removing these lines makes their compilation check fail and emit a warning instead
-    - sed -i '/: (MINIMUM_GCC_VERSION,/d' ${SP_DIR}/torch/utils/cpp_extension.py  # [linux]
+    - sed -i '/ (MINIMUM_GCC_VERSION,/d' ${SP_DIR}/torch/utils/cpp_extension.py  # [linux]
     - {{ PYTHON }} -m pip install . -vv
 
 requirements:
