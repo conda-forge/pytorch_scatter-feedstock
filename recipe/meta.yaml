@@ -1,14 +1,13 @@
-{% set name = "torch_scatter" %}
 {% set version = "2.1.0" %}
 # see github.com/conda-forge/conda-forge.github.io/issues/1059 for naming discussion
 {% set torch_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 
 package:
-  name: py{{ name|lower }}
+  name: pytorch_scatter
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/t/torch_scatter/torch_scatter-{{ version }}.tar.gz
   sha256: 3a7124c2a033552febbdc72407f7d4d8cb6dce465720e84ab831512e81c1d208
 
 build:
