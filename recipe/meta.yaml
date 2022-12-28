@@ -11,7 +11,7 @@ source:
   sha256: 3a7124c2a033552febbdc72407f7d4d8cb6dce465720e84ab831512e81c1d208
 
 build:
-  number: 0
+  number: 1
   string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
   string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
   skip: true  # [win]
