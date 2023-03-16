@@ -1,11 +1,11 @@
-About pytorch_scatter
-=====================
+About pytorch_scatter-feedstock
+===============================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pytorch_scatter-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/rusty1s/pytorch_scatter
 
 Package license: MIT
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pytorch_scatter-feedstock/blob/main/LICENSE.txt)
 
 Summary: PyTorch Extension Library of Optimized Scatter Operations
 
