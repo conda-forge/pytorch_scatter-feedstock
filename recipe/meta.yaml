@@ -36,6 +36,7 @@ requirements:
     - pytorch =*={{ torch_proc_type }}*
     - pytest-runner
     - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
+    - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
   run:
     - python
     - python-wget
