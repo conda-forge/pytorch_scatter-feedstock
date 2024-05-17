@@ -22,7 +22,7 @@ else
     exit 1
   fi
   export FORCE_CUDA=1
-  export CC="$GCC"
+  export CC="$GCC -I$PREFIX/include"
 fi
 
 ${PYTHON} -m pip install . -vv
