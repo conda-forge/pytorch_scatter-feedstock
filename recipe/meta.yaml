@@ -11,20 +11,17 @@ source:
   sha256: 69b3aa435f2424ac6a1bfb6ff702da6eb73b33ca0db38fb26989c74159258e47
 
 build:
-  number: 5
+  number: 6
   string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
   string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
   skip: true  # [win]
-  # as of pytorch 1.13, conda-forge only builds for CUDA 11.2+, see
-  # https://github.com/conda-forge/conda-forge-pinning-feedstock/issues/3491
-  skip: true  # [cuda_compiler_version in ("10.2", "11.0", "11.1")]
 
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}                 # [cuda_compiler_version not in (undefined, 'None')]
-    - sysroot_linux-64 ==2.17                # [linux64]
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - pytorch                                # [build_platform != target_platform]
@@ -38,6 +35,7 @@ requirements:
     - libcusparse-dev    # [(cuda_compiler_version or "").startswith("12")]
     - libcublas-dev      # [(cuda_compiler_version or "").startswith("12")]
     - libcusolver-dev    # [(cuda_compiler_version or "").startswith("12")]
+    - libxcrypt          # [linux and py<39]
   run:
     - python
     - python-wget
