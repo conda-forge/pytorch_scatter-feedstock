@@ -29,6 +29,7 @@ requirements:
   host:
     - python
     - pip
+    - setuptools
     - pytorch
     - pytorch =*={{ torch_proc_type }}*
     - pytest-runner
