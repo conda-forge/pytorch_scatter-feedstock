@@ -56,10 +56,14 @@ if [[ "${target_platform}" == "osx-arm64" ]]; then
   ls -la $SP_DIR/torch/include/torch
   rm -rf $SP_DIR/torch/include
 fi
-echo "====================================="
-cat $BUILD_PREFIX/venv/lib/python3.10/site-packages/torch/utils/cpp_extension.py
-echo "====================================="
+
 # Inject a print into the cpp_extension.py file to see what paths it ultimately returns
 sed -i 's/return paths/print("PAAATHS", paths, _TORCH_PATH); return paths/' $BUILD_PREFIX/venv/lib/python3.10/site-packages/torch/utils/cpp_extension.py
 
+echo "====================================="
+cat $BUILD_PREFIX/venv/lib/python3.10/site-packages/torch/utils/cpp_extension.py
+echo "====================================="
+
+unset CONDA_BUILD
+unset CONDA_PREFIX
 ${PYTHON} -m pip install . -vv
