@@ -64,6 +64,4 @@ echo "====================================="
 cat $BUILD_PREFIX/venv/lib/python3.10/site-packages/torch/utils/cpp_extension.py
 echo "====================================="
 
-unset CONDA_BUILD
-unset CONDA_PREFIX
 ${PYTHON} -m pip install . -vv
