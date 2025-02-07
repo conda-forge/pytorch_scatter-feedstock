@@ -36,4 +36,8 @@ EOF
   export CC="$RECIPE_DIR/gcc_shim"
 fi
 
+if [[ "${target_platform}" == "osx-arm64" ]]; then
+    rm -f $SP_DIR/torch/include
+fi
+
 ${PYTHON} -m pip install . -vv
