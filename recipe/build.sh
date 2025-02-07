@@ -59,5 +59,7 @@ fi
 echo "====================================="
 cat $SP_DIR/torch/utils/cpp_extension.py
 echo "====================================="
+# Inject a print into the cpp_extension.py file to see what paths it ultimately returns
+sed -i 's/return paths/print("PAAATHS", paths, _TORCH_PATH); return paths/' $SP_DIR/torch/utils/cpp_extension.py
 
 ${PYTHON} -m pip install . -vv
