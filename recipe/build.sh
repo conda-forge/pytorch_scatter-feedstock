@@ -64,4 +64,8 @@ echo "====================================="
 cat $BUILD_PREFIX/venv/lib/python3.10/site-packages/torch/utils/cpp_extension.py
 echo "====================================="
 
+wget https://raw.githubusercontent.com/pytorch/pytorch/main/torch/utils/collect_env.py
+# For security purposes, please check the contents of collect_env.py before running it.
+python collect_env.py
+
 ${PYTHON} -m pip install . -vv
