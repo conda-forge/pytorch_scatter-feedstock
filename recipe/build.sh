@@ -56,5 +56,8 @@ if [[ "${target_platform}" == "osx-arm64" ]]; then
   ls -la $SP_DIR/torch/include/torch
   rm -rf $SP_DIR/torch/include
 fi
+echo "====================================="
+cat $SP_DIR/torch/utils/cpp_extension.py
+echo "====================================="
 
 ${PYTHON} -m pip install . -vv
