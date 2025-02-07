@@ -37,7 +37,8 @@ EOF
 fi
 
 if [[ "${target_platform}" == "osx-arm64" ]]; then
-    rm -f $SP_DIR/torch/include
+  ls -la $SP_DIR/torch/include
+  rm -rf $SP_DIR/torch/include
 fi
 
 ${PYTHON} -m pip install . -vv
