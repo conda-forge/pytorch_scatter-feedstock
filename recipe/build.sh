@@ -1,3 +1,6 @@
+#!/bin/bash
+set -x #echo on
+
 if [[ "$cuda_compiler_version" == "None" ]]; then
   export FORCE_CUDA=0
 else
@@ -37,7 +40,20 @@ EOF
 fi
 
 if [[ "${target_platform}" == "osx-arm64" ]]; then
+  echo "SP_DIR: $SP_DIR"
+  echo "PREFIX: $PREFIX"
+
+  echo "--------------------------------"
+  ls -la $PREFIX/include
+  ls -la $PREFIX/include/torch
+  ls -la $PREFIX/include/torch/csrc
+  ls -la $PREFIX/include/torch/csrc/api
+  ls -la $PREFIX/include/torch/csrc/api/include
+  ls -la $PREFIX/include/torch/csrc/api/include/torch
+  echo "--------------------------------"
+  ls -la $SP_DIR/torch
   ls -la $SP_DIR/torch/include
+  ls -la $SP_DIR/torch/include/torch
   rm -rf $SP_DIR/torch/include
 fi
 
