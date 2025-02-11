@@ -1,6 +1,3 @@
-#!/bin/bash
-set -x #echo on
-
 if [[ "$cuda_compiler_version" == "None" ]]; then
   export FORCE_CUDA=0
 else
@@ -38,34 +35,5 @@ EOF
   chmod +x $RECIPE_DIR/gcc_shim
   export CC="$RECIPE_DIR/gcc_shim"
 fi
-
-if [[ "${target_platform}" == "osx-arm64" ]]; then
-  echo "SP_DIR: $SP_DIR"
-  echo "PREFIX: $PREFIX"
-
-  echo "--------------------------------"
-  ls -la $PREFIX/include
-  ls -la $PREFIX/include/torch
-  ls -la $PREFIX/include/torch/csrc
-  ls -la $PREFIX/include/torch/csrc/api
-  ls -la $PREFIX/include/torch/csrc/api/include
-  ls -la $PREFIX/include/torch/csrc/api/include/torch
-  echo "--------------------------------"
-  ls -la $SP_DIR/torch
-  ls -la $SP_DIR/torch/include
-  ls -la $SP_DIR/torch/include/torch
-  rm -rf $SP_DIR/torch/include
-fi
-
-# Inject a print into the cpp_extension.py file to see what paths it ultimately returns
-sed -i 's/return paths/print("PAAATHS", paths, _TORCH_PATH, os.environ.get("CONDA_BUILD", None), os.environ.get("CONDA_PREFIX", None), "DONE"); return paths/' $BUILD_PREFIX/venv/lib/python3.10/site-packages/torch/utils/cpp_extension.py
-
-echo "====================================="
-cat $BUILD_PREFIX/venv/lib/python3.10/site-packages/torch/utils/cpp_extension.py
-echo "====================================="
-
-wget https://raw.githubusercontent.com/pytorch/pytorch/main/torch/utils/collect_env.py
-# For security purposes, please check the contents of collect_env.py before running it.
-python collect_env.py
 
 ${PYTHON} -m pip install . -vv
