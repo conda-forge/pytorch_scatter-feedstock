@@ -38,9 +38,5 @@ EOF
   export CC="$RECIPE_DIR/gcc_shim"
 fi
 
-
-if [[ "${build_platform}" != "${target_platform}" ]]; then
-	$PREFIX/bin/python -m pip install . -vv
-else
-	${PYTHON} -m pip install . -vv
-fi
+export Python_ROOT_DIR=$PREFIX
+${PYTHON} -m pip install . -vv
