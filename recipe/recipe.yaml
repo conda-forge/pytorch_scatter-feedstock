@@ -48,7 +48,7 @@ requirements:
         - libcusolver-dev
   run:
     - python
-    - python-wget
+    # - python-wget
     - pytorch * [build=${{ torch_proc_type }}*]
 
 tests:
