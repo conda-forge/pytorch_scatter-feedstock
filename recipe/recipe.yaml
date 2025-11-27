@@ -32,8 +32,6 @@ requirements:
       then:
         - python
         - cross-python_${{ target_platform }}
-        - pytorch
-        - pytorch * [build=${{ torch_proc_type }}*]
   host:
     - python
     - pip
