@@ -38,4 +38,4 @@ EOF
   export CC="$RECIPE_DIR/gcc_shim"
 fi
 
-${PYTHON} -m pip install . -vv
+$PREFIX/bin/python -m pip install . -vv
