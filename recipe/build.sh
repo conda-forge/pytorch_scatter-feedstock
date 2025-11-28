@@ -38,10 +38,4 @@ EOF
   export CC="$RECIPE_DIR/gcc_shim"
 fi
 
-# see https://github.com/conda-forge/torchvision-feedstock/pull/125#discussion_r2480080905
-if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == "1" ]]; then
-  # remove build prefix headers that conflict with cross compilation
-  rm -rf "${BUILD_PREFIX}"/venv/lib/python3.*/site-packages/torch/include/torch/csrc/api/include/
-fi
-
-${PYTHON} -m pip install . -vv
+$PREFIX/bin/python -m pip install . -vv
