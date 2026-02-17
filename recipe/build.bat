@@ -5,6 +5,6 @@ if not "%cuda_compiler_version%" == "None" (
     set FORCE_CUDA=0
 )
 
-sed -i 's|^[[:space:]]*#if defined(_WIN32) && (defined(USE_CUDA) || defined(USE_ROCM))[[:space:]]*$|#if 1|' "$PREFIX/Library/include/torch/csrc/dynamo/compiled_autograd.h"
+sed -i 's|^#if defined(_WIN32) && (defined(USE_CUDA) || defined(USE_ROCM))|#if 1|' "$PREFIX/Library/include/torch/csrc/dynamo/compiled_autograd.h"
 
 %PYTHON% -m pip install . -vv --no-deps --no-build-isolation
