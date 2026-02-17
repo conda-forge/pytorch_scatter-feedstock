@@ -25,6 +25,9 @@ requirements:
     - ${{ stdlib('c') }}
     - ${{ compiler('c') }}
     - ${{ compiler('cxx') }}
+    - if: win
+      then:
+        - m2-sed
     - if: cuda_compiler_version != "None"
       then:
         - ${{ compiler('cuda') }}
