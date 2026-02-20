@@ -3,7 +3,7 @@ schema_version: 1
 
 context:
   version: 2.1.2
-  build_number: 16
+  build_number: 17
   torch_proc_type: ${{ "cuda" if cuda_compiler_version != "None" else "cpu" }}
   build_string_prefix: ${{ ("cuda" ~ (cuda_compiler_version | replace(".", ""))) if cuda_compiler_version != "None" else "cpu" }}
 
@@ -18,14 +18,18 @@ source:
 build:
   number: ${{ build_number }}
   string: ${{ build_string_prefix }}_py${{ python | version_to_buildstring }}_h${{ hash }}_${{ build_number }}
+  skip: not win or match(python, '<3.13')
 
 requirements:
   build:
     - ${{ stdlib('c') }}
     - ${{ compiler('c') }}
     - ${{ compiler('cxx') }}
+    - if: win
+      then:
+        - m2-sed
     - if: cuda_compiler_version != "None"
-      then: 
+      then:
         - ${{ compiler('cuda') }}
     - if: build_platform != target_platform
       then:
