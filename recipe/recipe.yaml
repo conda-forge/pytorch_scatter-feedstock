@@ -18,7 +18,6 @@ source:
 build:
   number: ${{ build_number }}
   string: ${{ build_string_prefix }}_py${{ python | version_to_buildstring }}_h${{ hash }}_${{ build_number }}
-  skip: not win or match(python, '<3.13')
 
 requirements:
   build:
