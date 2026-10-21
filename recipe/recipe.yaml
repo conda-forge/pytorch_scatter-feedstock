@@ -12,7 +12,6 @@ source:
   url: https://pypi.org/packages/source/t/torch_scatter/torch_scatter-${{ version }}.tar.gz
   sha256: 69b3aa435f2424ac6a1bfb6ff702da6eb73b33ca0db38fb26989c74159258e47
   patches:
-    - fix-win-build.patch
     # setuptools>=84 runs MSVC via Compiler.call() instead of spawn(), bypassing
     # torch's non-ninja BuildExtension hook that adds /std:c++20 and dispatches .cu to nvcc
     - use-ninja.patch
