@@ -2,7 +2,7 @@
 
 if not "%cuda_compiler_version%" == "None" (
     set FORCE_CUDA=1
-    set "TORCH_CUDA_ARCH_LIST=@CF_TORCH_CUDA_ARCH_LIST@"
+    set "TORCH_CUDA_ARCH_LIST=%CF_TORCH_CUDA_ARCH_LIST%"
 ) else (
     set FORCE_CUDA=0
 )
