@@ -3,6 +3,8 @@
 if not "%cuda_compiler_version%" == "None" (
     set FORCE_CUDA=1
     set "TORCH_CUDA_ARCH_LIST=%CF_TORCH_CUDA_ARCH_LIST%"
+    REM CCCL requires the standards-conforming MSVC preprocessor
+    set "NVCC_FLAGS=-Xcompiler /Zc:preprocessor"
 ) else (
     set FORCE_CUDA=0
 )
