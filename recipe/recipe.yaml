@@ -1,6 +1,3 @@
-# see github.com/conda-forge/conda-forge.github.io/issues/1059 for naming discussion
-schema_version: 1
-
 context:
   version: 2.1.2
   build_number: 22
