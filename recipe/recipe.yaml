@@ -17,6 +17,8 @@ source:
 build:
   number: ${{ build_number }}
   string: ${{ build_string_prefix }}_py${{ python | version_to_buildstring }}_h${{ hash }}_${{ build_number }}
+  # pytorch 2.14 is only built for CUDA 13.x on Windows
+  skip: win and cuda_compiler_version == "12.9"
 
 requirements:
   build:
@@ -38,7 +40,11 @@ requirements:
   host:
     - python
     - pip
-    - setuptools
+    # setuptools 84 runs MSVC via Compiler.call() instead of spawn(), bypassing
+    # torch's BuildExtension hook that adds /std:c++20 and dispatches .cu to nvcc
+    - if: win
+      then: setuptools <84
+      else: setuptools
     - pytorch
     - pytorch * [build=${{ torch_proc_type }}*]
     - pytest-runner
