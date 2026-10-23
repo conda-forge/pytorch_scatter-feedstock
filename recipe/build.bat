@@ -1,11 +1,10 @@
 @ echo on
 
-if "%cuda_compiler_version%" == "12.9" (
-    set TORCH_CUDA_ARCH_LIST=5.0;6.0;7.0;7.5;8.0;8.6;8.9;9.0;10.0;12.0+PTX
+if not "%cuda_compiler_version%" == "None" (
     set FORCE_CUDA=1
-) else if "%cuda_compiler_version%" == "13.0" (
-    set TORCH_CUDA_ARCH_LIST=7.5;8.0;8.6;8.9;9.0;10.0;12.0+PTX
-    set FORCE_CUDA=1
+    set "TORCH_CUDA_ARCH_LIST=%CF_TORCH_CUDA_ARCH_LIST%"
+    REM CCCL requires the standards-conforming MSVC preprocessor
+    set "NVCC_FLAGS=-Xcompiler /Zc:preprocessor"
 ) else (
     set FORCE_CUDA=0
 )
